@@ -1,12 +1,6 @@
 import React, { Component, Fragment } from "react";
 import PropTypes from "prop-types";
 
-const sortNames = names => () => {
-  console.log("Names to sort", names);
-  names.sort();
-  console.log("Sorted names", names);
-};
-
 class Names extends Component {
   static propTypes = {
     names: PropTypes.array.isRequired
@@ -21,7 +15,7 @@ class Names extends Component {
   // Return an object to update the state, or null to update nothing
   static getDerivedStateFromProps(nextProps, prevState) {
     if (prevState.names !== nextProps.names) {
-      console.log("getDerivedStateFromProps", nextProps);
+      console.log("getDerivedStateFromProps - Update Sort");
       const { names } = nextProps;
       let sortedNames = [...names];
       sortedNames.sort();
@@ -35,12 +29,12 @@ class Names extends Component {
   }
 
   render() {
-    const { names, noMoreNames, addName } = this.props;
+    const { noMoreNames, addName } = this.props;
     const { sortedNames } = this.state;
 
     return (
       <Fragment>
-        <button disabled={noMoreNames} onClick={() => addName(names)}>
+        <button disabled={noMoreNames} onClick={addName}>
           Add a Name
         </button>
         {sortedNames && (

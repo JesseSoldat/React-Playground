@@ -53,6 +53,7 @@ class App extends Component {
             </div>
           )}
         </Toggle>
+
         <div style={{ marginTop: "30px" }}>
           {this.state.noMoreNames && (
             <Fragment>
